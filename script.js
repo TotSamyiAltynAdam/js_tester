@@ -1,14 +1,16 @@
-Function.prototype.callPolyfill = function(context, ...args) {
-    const symbolId = Symbol();
-    context[symbolId] = this;
-    return context[symbolId](...args);
-}
+var compactObject = function(obj) {
+    if(obj === null) return null;
+    if(Array.isArray(obj)) return obj.filter(Boolean).map(compactObject);
+    if(typeof obj !== 'object') return obj;
 
-function increment() { 
-    this.count++; 
-    return this.count; 
-}
+    const compacted = {};
+    for(const key in obj){
+        let value = compactObject(obj[key]);
+        if(value) compacted[key] = value;
+    }
+    return compacted;
+};
 
-console.log(increment.callPolyfill(
-    {count: 1}
-)); 
+//obj = [null, 0, false, 1]
+obj = {"a": null, "b": [false, 1]}
+console.log(compactObject(obj));
