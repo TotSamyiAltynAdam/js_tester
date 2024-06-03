@@ -1,9 +1,19 @@
-const isBirthday: boolean = true;
-let age: number = 40;
-const userName: string = 'John';
+const isBirthdayData: boolean = true;
+let ageData: number = 40;
+const userNameData: string = 'John';
 
-age = 40;
+// function logBrthMsg(isBirthday: boolean, userName: string, age: number): string {
+//     if(isBirthday) {
+//         return `Congratulations ${userName.toUpperCase()}, age: ${age + 1}`;
+//     }
+//     return 'Error';
+// }
 
-if(isBirthday) {
-    console.log(`Congratulations ${userName.toUpperCase()}, age: ${age + 1}`);
+const logBrthMsg = (isBirthday: boolean, userName: string, age: number): string => {
+    if(isBirthday) {
+        return `Congratulations ${userName.toUpperCase()}, age: ${age + 1}`;
+    }
+    return 'Error';
 }
+
+console.log(logBrthMsg(isBirthdayData, userNameData, ageData));
