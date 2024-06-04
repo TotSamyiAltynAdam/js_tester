@@ -1,18 +1,12 @@
-const isBirthdayData: boolean = true;
-let ageData: number = 40;
-const userNameData: string = 'John';
+let id: symbol = Symbol('id');
 
-const createError = (msg: string): never => {
-    throw new Error(msg);
-}
+const data = {
+    [id]: 1
+};
 
-function logBrthMsg(isBirthday: boolean, userName: string, age: number): string {
-    if(isBirthday === true) {
-        return `Congratulations ${userName.toUpperCase()}, age: ${age + 1}`;
-    } else if(isBirthday === false) {
-        return 'no brth message';
-    }
-    return createError('Error');
-}
+console.log(data[id]);
 
-console.log(logBrthMsg(isBirthdayData, userNameData, ageData));
+
+const num1: bigint = 1n;
+const num2: bigint = 2n;
+console.log(num1 + num2);

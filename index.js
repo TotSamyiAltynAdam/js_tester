@@ -1,16 +1,9 @@
-var currRate = "1.05";
-var fetchCurr = function (response) {
-    var data = JSON.parse(response);
-    return data;
-};
-function transferEurToUsd(available, amount, commission) {
-    if (available) {
-        var res = fetchCurr(currRate) * amount * commission;
-        console.log(res);
-        // Или запись в элемент на странице вместо консоли
-    }
-    else {
-        console.log("Сейчас обмен недоступен");
-    }
-}
-transferEurToUsd(true, 500, 1.05);
+var _a;
+var id = Symbol('id');
+var data = (_a = {},
+    _a[id] = 1,
+    _a);
+console.log(data[id]);
+var num1 = 1n;
+var num2 = 2n;
+console.log(num1 + num2);
