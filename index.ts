@@ -1,12 +1,36 @@
-let id: symbol = Symbol('id');
+// const isBirthdayData: boolean = true;
+// let ageData: number = 40;
+// const userNameData: string = 'John';
 
-const data = {
-    [id]: 1
-};
+const userData = {
+    isBirthdayData: true,
+    ageData: 40,
+    userNameData: 'John',
+    messages: {
+        error: 'Error'
+    }
+}
 
-console.log(data[id]);
+const createError = (msg: string): never => {
+    throw new Error(msg);
+}
 
+function logBrthMsg({ //destructurization
+    isBirthdayData, 
+    userNameData, 
+    ageData,
+    messages: {error}
+}: { //anotation
+    isBirthdayData: boolean, 
+    userNameData: string, 
+    ageData: number,
+    messages: {error: string}
+}): string {
+    if(isBirthdayData) {
+        return `Congratulations ${userNameData.toUpperCase()}, age: ${ageData + 1}`;
+    } else {
+        return createError(error);
+    }
+}
 
-const num1: bigint = 1n;
-const num2: bigint = 2n;
-console.log(num1 + num2);
+console.log(logBrthMsg(userData));
