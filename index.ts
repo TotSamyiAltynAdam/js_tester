@@ -1,49 +1,50 @@
-// const isBirthdayData: boolean = true;
-// let ageData: number = 40;
-// const userNameData: string = 'John';
+const electricityUserData = {
+	readings: 95,
+	units: "kWt",
+	mode: "double",
+};
 
-const userData = {
-    isBirthdayData: true,
-    ageData: 40,
-    userNameData: 'John',
-    messages: {
-        error: 'Error'
-    }
-}
+const waterUserData = {
+	readings: 3,
+	units: "m3",
+};
 
-const createError = (msg: string): never => {
-    throw new Error(msg);
-}
+const elRate: number = 0.45;
+const wRate: number = 2;
 
-function logBrthMsg({ //destructurization
-    isBirthdayData, 
-    userNameData, 
-    ageData,
-    messages: {error}
-}: { //anotation
-    isBirthdayData: boolean, 
-    userNameData: string, 
-    ageData: number,
-    messages: {error: string}
-}): string {
-    if(isBirthdayData) {
-        return `Congratulations ${userNameData.toUpperCase()}, age: ${ageData + 1}`;
-    } else {
-        return createError(error);
-    }
-}
+const monthPayments: number[] = [0, 0]; // [electricity, water]
 
-console.log(logBrthMsg(userData));
+const calculatePayments = (
+    {readings, mode}: {readings: number; mode: string}, 
+    wData: {readings: number; units: string}, 
+    elRate: number, 
+    wRate: number
+): void => {
+	if (mode === "double" && readings < 50) {
+		monthPayments[0] = readings * elRate * 0.7;
+	} else {
+		monthPayments[0] = readings * elRate;
+	}
 
-const departments: string[] = ['dev', 'design', 'marketing'];
-const department = departments[0];
+	monthPayments[1] = wData.readings * wRate;
+};
 
-const report = departments
-                        .filter((d: string) => d !== 'dev')
-                        .map((d: string) => `${d} - done`);
+calculatePayments(electricityUserData, waterUserData, elRate, wRate);
 
-const [first] = report;
-console.log(first);
+const sendInvoice = (
+    [el, water]: number[], 
+    {readings, units}: {readings: number; units: string}, 
+    waterUserData: {readings: number; units: string}
+): string => {
+	const text = `    Hello!
+    This month you used ${electricityUserData.readings} ${electricityUserData.units} of electricity
+    It will cost: ${monthPayments[0]}€
+    
+    This month you used ${waterUserData.readings} ${waterUserData.units} of water
+    It will cost: ${monthPayments[1]}€`;
 
-const nums: number[] = [1, 2, 3];
-const matrix: number[][] = [[1, 2, 3], [4, 5, 6]];
+	return text;
+};
+
+const invoice = sendInvoice(monthPayments, electricityUserData, waterUserData);
+console.log(invoice);
