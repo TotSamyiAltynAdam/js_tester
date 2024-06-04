@@ -19,10 +19,13 @@ function startServer(
 
 startServer('https', 3001);
 
+type AnimationID = string | number;
+type AnimationTimingFunc = 'ease' | 'ease-in' | 'ease-out';
+
 function createAnimation(
-    id: string | number, 
-    animName: string, 
-    timingFunc: 'ease' | 'ease-in' | 'ease-out' = 'ease',
+    id: AnimationID,
+    animName: string,
+    timingFunc: AnimationTimingFunc = 'ease',
     duration: number,
     iterCount: 'infinite' | number
 ): void {
@@ -34,4 +37,4 @@ function createAnimation(
     //}
 }
 
-createAnimation('id', 'animName', 'ease', 5, 'infinite')
+createAnimation('id', 'animName', 'ease', 5, 'infinite');
