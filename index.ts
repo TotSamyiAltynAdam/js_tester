@@ -34,3 +34,16 @@ function logBrthMsg({ //destructurization
 }
 
 console.log(logBrthMsg(userData));
+
+const departments: string[] = ['dev', 'design', 'marketing'];
+const department = departments[0];
+
+const report = departments
+                        .filter((d: string) => d !== 'dev')
+                        .map((d: string) => `${d} - done`);
+
+const [first] = report;
+console.log(first);
+
+const nums: number[] = [1, 2, 3];
+const matrix: number[][] = [[1, 2, 3], [4, 5, 6]];
