@@ -17,8 +17,12 @@ const user: User = {
     address: 'Almaty: Abay street 26a'
 };
 
-const dbName = '12345';
+let dbName: string;
+sendUserData(user, 'efvenienf');
+
+console.log(dbName!);
 
 function sendUserData(obj: User, db?: string): void{
+    dbName = '12344';
     console.log(obj.parents?.father?.toLowerCase(), db?.toLowerCase());
 }
