@@ -1,17 +1,20 @@
 var msg = 'Hello';
 msg = 'Hello';
-var port3000 = 3000;
-var port3001 = 3001;
-function startServer(protocol, port) {
-    if (port == port3000 || port == port3001) {
-        console.log("Server started on ".concat(protocol, "://server:").concat(port));
-    }
-    else {
-        console.log("Invalid port: ".concat(port));
-    }
+var serverConfig = {
+    protocol: 'https',
+    port: 3001,
+    role: 'admin'
+};
+var backupConfig = {
+    protocol: 'http',
+    port: 3000,
+    role: 'sysadmin'
+};
+var startServer = function (protocol, port) {
+    console.log("Server started on ".concat(protocol, "://server:").concat(port));
     return 'Server started';
-}
-startServer('https', 3001);
+};
+startServer(serverConfig.protocol, serverConfig.port);
 function createAnimation(id, animName, timingFunc, duration, iterCount) {
     //const elem = document.querySelector(`#${id}`) as HTMLElement;
     if (timingFunc === void 0) { timingFunc = 'ease'; }
