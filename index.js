@@ -1,12 +1,19 @@
-;
-var user = {
-    login: 'yeldos',
-    password: 'qwerty',
-    age: 21,
-    address: 'Almaty: Abay street 26a'
-};
-var dbName = '12345';
-function sendUserData(obj, db) {
-    var _a, _b;
-    console.log((_b = (_a = obj.parents) === null || _a === void 0 ? void 0 : _a.father) === null || _b === void 0 ? void 0 : _b.toLowerCase(), db === null || db === void 0 ? void 0 : db.toLowerCase());
+var Directions;
+(function (Directions) {
+    Directions[Directions["TOP"] = 0] = "TOP";
+    Directions[Directions["RIGHT"] = 1] = "RIGHT";
+    Directions[Directions["LEFT"] = 2] = "LEFT";
+    Directions[Directions["BOTTOM"] = 3] = "BOTTOM";
+})(Directions || (Directions = {}));
+var TimingFunc;
+(function (TimingFunc) {
+    TimingFunc["EASE"] = "ease";
+    TimingFunc["EASE_IN"] = "ease-in";
+    TimingFunc["LINEAR"] = "linear";
+})(TimingFunc || (TimingFunc = {}));
+function frame(elem, dir, tFunc) {
+    if (dir === Directions.RIGHT) {
+        console.log(tFunc);
+    }
 }
+frame('id', Directions.RIGHT, TimingFunc.LINEAR);
